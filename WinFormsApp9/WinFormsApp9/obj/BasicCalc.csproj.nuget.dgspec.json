@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\WinFormsApp9.csproj": {}
+    "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\BasicCalc.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\WinFormsApp9.csproj": {
+    "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\BasicCalc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\WinFormsApp9.csproj",
-        "projectName": "WinFormsApp9",
-        "projectPath": "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\WinFormsApp9.csproj",
+        "projectUniqueName": "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\BasicCalc.csproj",
+        "projectName": "BasicCalc",
+        "projectPath": "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\BasicCalc.csproj",
         "packagesPath": "C:\\Users\\Kyle\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\obj\\",
         "projectStyle": "PackageReference",

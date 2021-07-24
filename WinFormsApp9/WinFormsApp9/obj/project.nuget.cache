@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZVj53hiYFsdMfWNhEXeauw6JOFGQH8ibcXb/5bmIq7/oeTn5ZyjXCWGs6xqiOJi0e+9oMlcbSJc+JO8aS5mH8g==",
+  "dgSpecHash": "Pu7qeasfIbugoF++YYIYOiFuwx9lWQSd3COYY6L42fTFXPMLGwAlCqt1B+RUVFmUF+VF6qMFgJ87fs1Yng3TKg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kyle\\source\\repos\\WinFormsApp9\\WinFormsApp9\\WinFormsApp9.csproj",
+  "projectFilePath": "C:\\Users\\Kyle\\Downloads\\Calculator\\WinFormsApp9\\WinFormsApp9\\BasicCalc.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
