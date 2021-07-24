@@ -13,12 +13,14 @@ namespace WinFormsApp9
     public partial class Form1 : Form
     {
         bool right,trueZiro,arthimaticClicked;
+        Stack<Double> results=new Stack<double>();
         public Form1()
         {
             InitializeComponent();
             right = true;
             trueZiro = false;
             arthimaticClicked = false;
+            results.Push(0.0);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -365,6 +367,8 @@ namespace WinFormsApp9
             arthimaticClicked = false;
             trueZiro = false;
             textBox1.Text = "0.0";
+            results.Clear();
+            results.Push(0.0);
         }
         Double lastNum = 0.0;
 
@@ -387,11 +391,20 @@ namespace WinFormsApp9
         {
           
         }
-
+        Double res;
         private void button8_Click(object sender, EventArgs e)
         {
+            if (!arthimaticClicked)
+            {
+                results.Push(results.Peek() + (Double)d.ConvertFromString(textBox1.Text));
+                firstNum = (Double)d.ConvertFromString(textBox1.Text);
+            }
+            else
+                results.Push(results.Peek() + firstNum);
             
-            
+            arthimaticClicked = true;
+            textBox1.Text = results.Peek()+"";
+            if (!textBox1.Text.Contains(".")) textBox1.Text += ".0";
         }
 
         private void button4_Click(object sender, EventArgs e)
