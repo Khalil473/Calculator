@@ -375,6 +375,12 @@ namespace WinFormsApp9
 
         private void button12_Click(object sender, EventArgs e)
         {
+            if (results.Peek() != "+" && results.Peek() != "-" && results.Peek() != "*" && results.Peek() != "/" && results.Peek() != "0.0")
+            {
+                firstNum = (Double)d.ConvertFromString(results.Peek());
+                results.Push("-");
+                return;
+            }
             doCalculate();
             String s = results.Peek();
             if (results.Count < 2)
@@ -388,6 +394,12 @@ namespace WinFormsApp9
 
         private void button13_Click(object sender, EventArgs e)
         {
+            if (results.Peek() != "+" && results.Peek() != "-" && results.Peek() != "*" && results.Peek() != "/" && results.Peek() != "0.0")
+            {
+                firstNum = (Double)d.ConvertFromString(results.Peek());
+                results.Push("*");
+                return;
+            }
             doCalculate();
             String s = results.Peek();
             if (results.Count < 2)
@@ -400,6 +412,12 @@ namespace WinFormsApp9
 
         private void button14_Click(object sender, EventArgs e)
         {
+            if (results.Peek() != "+" && results.Peek() != "-" && results.Peek() != "*" && results.Peek() != "/" && results.Peek() != "0.0")
+            {
+                firstNum = (Double)d.ConvertFromString(results.Peek());
+                results.Push("/");
+                return;
+            }
             doCalculate();
             String s = results.Peek();
             if (results.Count < 2)
@@ -412,10 +430,15 @@ namespace WinFormsApp9
         
         private void button16_Click(object sender, EventArgs e)
         {
-            String preOp = results.Peek();
-          
+            if (arthimaticClicked)
+            {
+                String w = results.Pop();
+                String w2 = results.Pop();
+                results.Push(w);
+                results.Push(w2);
+                
+            }
             doCalculate();
-            if (arthimaticClicked) results.Push(preOp);
             String s = results.Peek();
             textBox1.Text = s;
             if (!s.Contains(".")) textBox1.Text += ".0";
@@ -423,10 +446,16 @@ namespace WinFormsApp9
         }
         private void button8_Click(object sender, EventArgs e)
         {
+            if(results.Peek()!="+"  && results.Peek() != "-" && results.Peek() != "*" && results.Peek() != "/" && results.Peek()!="0.0")
+            {
+                firstNum =(Double)d.ConvertFromString( results.Peek());
+                results.Push("+");
+                return;
+            }
             doCalculate();
             String s = results.Peek();
             if(results.Count<2)
-            results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
+                results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
             results.Push("+");
             arthimaticClicked = true;
             textBox1.Text = s;
@@ -436,52 +465,53 @@ namespace WinFormsApp9
         private void doCalculate()
         {
             String op=results.Pop();
+            Double ress=0.0;
             if (op == "0.0") return;
             if (op == "+")
             {
                 if (!arthimaticClicked)
                 {
-                    results.Push(((Double)d.ConvertFromString(results.Peek()) + (Double)d.ConvertFromString(textBox1.Text))+"");
+                    ress=(((Double)d.ConvertFromString(results.Peek()) + (Double)d.ConvertFromString(textBox1.Text)));
                     firstNum = (Double)d.ConvertFromString(textBox1.Text);
                 }
                 else
-                    results.Push(((Double)d.ConvertFromString(results.Peek()) + firstNum)+"");
-                return;
+                    ress=(((Double)d.ConvertFromString(results.Peek()) + firstNum));
             }
             if (op == "-")
             {
+
                 if (!arthimaticClicked)
                 {
-                    results.Push(((Double)d.ConvertFromString(results.Peek()) - (Double)d.ConvertFromString(textBox1.Text)) + "");
+                    ress = (((Double)d.ConvertFromString(results.Peek()) - (Double)d.ConvertFromString(textBox1.Text)));
                     firstNum = (Double)d.ConvertFromString(textBox1.Text);
                 }
                 else
-                    results.Push(((Double)d.ConvertFromString(results.Peek()) - firstNum) + "");
-                return;
+                    ress = (((Double)d.ConvertFromString(results.Peek()) - firstNum));
             }
             if (op == "*")
             {
+
                 if (!arthimaticClicked)
                 {
-                    results.Push(((Double)d.ConvertFromString(results.Peek()) * (Double)d.ConvertFromString(textBox1.Text)) + "");
+                    ress = (((Double)d.ConvertFromString(results.Peek()) * (Double)d.ConvertFromString(textBox1.Text)));
                     firstNum = (Double)d.ConvertFromString(textBox1.Text);
                 }
                 else
-                    results.Push(((Double)d.ConvertFromString(results.Peek()) * firstNum) + "");
-                return;
+                    ress = (((Double)d.ConvertFromString(results.Peek()) * firstNum));
             }
             if (op == "/")
             {
+
                 if (!arthimaticClicked)
                 {
-                    results.Push(((Double)d.ConvertFromString(results.Peek()) / (Double)d.ConvertFromString(textBox1.Text)) + "");
+                    ress = (((Double)d.ConvertFromString(results.Peek()) / (Double)d.ConvertFromString(textBox1.Text)));
                     firstNum = (Double)d.ConvertFromString(textBox1.Text);
                 }
                 else
-                    results.Push(((Double)d.ConvertFromString(results.Peek()) / firstNum) + "");
-                return;
+                    ress = (((Double)d.ConvertFromString(results.Peek()) / firstNum));
             }
-
+            results.Push(op);
+            results.Push(ress + "");
         }
 
         private void button4_Click(object sender, EventArgs e)
