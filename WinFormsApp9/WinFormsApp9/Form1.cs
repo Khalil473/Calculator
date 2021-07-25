@@ -13,14 +13,14 @@ namespace WinFormsApp9
     public partial class Form1 : Form
     {
         bool right,trueZiro,arthimaticClicked;
-        Stack<Double> results=new Stack<double>();
+        Stack<String> results=new Stack<String>();
         public Form1()
         {
             InitializeComponent();
             right = true;
             trueZiro = false;
             arthimaticClicked = false;
-            results.Push(0.0);
+            results.Push("0.0");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -368,43 +368,120 @@ namespace WinFormsApp9
             trueZiro = false;
             textBox1.Text = "0.0";
             results.Clear();
-            results.Push(0.0);
+            results.Push("0.0");
+            results.Push("0.0");
         }
         Double lastNum = 0.0;
 
         private void button12_Click(object sender, EventArgs e)
         {
-           
+            doCalculate();
+            String s = results.Peek();
+            if (results.Count < 2)
+                results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
+            results.Push("-");
+            arthimaticClicked = true;
+            textBox1.Text = s;
+            if (!s.Contains(".")) textBox1.Text += ".0";
+
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-           
+            doCalculate();
+            String s = results.Peek();
+            if (results.Count < 2)
+                results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
+            results.Push("*");
+            arthimaticClicked = true;
+            textBox1.Text = s;
+            if (!s.Contains(".")) textBox1.Text += ".0";
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
-          
+            doCalculate();
+            String s = results.Peek();
+            if (results.Count < 2)
+                results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
+            results.Push("/");
+            arthimaticClicked = true;
+            textBox1.Text = s;
+            if (!s.Contains(".")) textBox1.Text += ".0";
         }
         
         private void button16_Click(object sender, EventArgs e)
         {
+            String preOp = results.Peek();
           
+            doCalculate();
+            if (arthimaticClicked) results.Push(preOp);
+            String s = results.Peek();
+            textBox1.Text = s;
+            if (!s.Contains(".")) textBox1.Text += ".0";
+            arthimaticClicked = true;
         }
-        Double res;
         private void button8_Click(object sender, EventArgs e)
         {
-            if (!arthimaticClicked)
-            {
-                results.Push(results.Peek() + (Double)d.ConvertFromString(textBox1.Text));
-                firstNum = (Double)d.ConvertFromString(textBox1.Text);
-            }
-            else
-                results.Push(results.Peek() + firstNum);
-            
+            doCalculate();
+            String s = results.Peek();
+            if(results.Count<2)
+            results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
+            results.Push("+");
             arthimaticClicked = true;
-            textBox1.Text = results.Peek()+"";
-            if (!textBox1.Text.Contains(".")) textBox1.Text += ".0";
+            textBox1.Text = s;
+            if (!s.Contains(".")) textBox1.Text += ".0";
+        }
+
+        private void doCalculate()
+        {
+            String op=results.Pop();
+            if (op == "0.0") return;
+            if (op == "+")
+            {
+                if (!arthimaticClicked)
+                {
+                    results.Push(((Double)d.ConvertFromString(results.Peek()) + (Double)d.ConvertFromString(textBox1.Text))+"");
+                    firstNum = (Double)d.ConvertFromString(textBox1.Text);
+                }
+                else
+                    results.Push(((Double)d.ConvertFromString(results.Peek()) + firstNum)+"");
+                return;
+            }
+            if (op == "-")
+            {
+                if (!arthimaticClicked)
+                {
+                    results.Push(((Double)d.ConvertFromString(results.Peek()) - (Double)d.ConvertFromString(textBox1.Text)) + "");
+                    firstNum = (Double)d.ConvertFromString(textBox1.Text);
+                }
+                else
+                    results.Push(((Double)d.ConvertFromString(results.Peek()) - firstNum) + "");
+                return;
+            }
+            if (op == "*")
+            {
+                if (!arthimaticClicked)
+                {
+                    results.Push(((Double)d.ConvertFromString(results.Peek()) * (Double)d.ConvertFromString(textBox1.Text)) + "");
+                    firstNum = (Double)d.ConvertFromString(textBox1.Text);
+                }
+                else
+                    results.Push(((Double)d.ConvertFromString(results.Peek()) * firstNum) + "");
+                return;
+            }
+            if (op == "/")
+            {
+                if (!arthimaticClicked)
+                {
+                    results.Push(((Double)d.ConvertFromString(results.Peek()) / (Double)d.ConvertFromString(textBox1.Text)) + "");
+                    firstNum = (Double)d.ConvertFromString(textBox1.Text);
+                }
+                else
+                    results.Push(((Double)d.ConvertFromString(results.Peek()) / firstNum) + "");
+                return;
+            }
+
         }
 
         private void button4_Click(object sender, EventArgs e)
