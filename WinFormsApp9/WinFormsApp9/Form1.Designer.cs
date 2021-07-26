@@ -61,7 +61,7 @@ namespace WinFormsApp9
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(320, 57);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "123.0";
+            this.textBox1.Text = "0.0";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 

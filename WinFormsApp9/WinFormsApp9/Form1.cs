@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinFormsApp9
 {
     public partial class Form1 : Form
     {
-        bool right,trueZiro,arthimaticClicked;
+        bool left,trueZiro,arthimaticClicked;
         Stack<String> results=new Stack<String>();
         public Form1()
         {
             InitializeComponent();
-            right = true;
-            trueZiro = false;
+            firstNum = 0.0;
+            lastNum = 0.0;
+            left = true;
             arthimaticClicked = false;
+            trueZiro = false;
+            textBox1.Text = "0.0";
+            results.Clear();
+            results.Push("0.0");
             results.Push("0.0");
         }
 
@@ -57,14 +57,14 @@ namespace WinFormsApp9
             else if (Int32.Parse(textBox1.Text.Split(".")[1]) == 0)
             {
                 textBox1.Text = textBox1.Text.Substring(0, textBox1.Text.Split(".")[0].Length - 1);
-                right = true;
+                left = true;
             }
             else textBox1.Text = textBox1.Text.Substring(0, textBox1.Text.Length - 1);
             if (!textBox1.Text.Contains("."))
             {
                 textBox1.Text += ".0";
                 trueZiro = false;
-                right = true;
+                left = true;
             }
             else if (textBox1.Text.IndexOf(".") == textBox1.Text.Length - 1)
             {
@@ -75,7 +75,7 @@ namespace WinFormsApp9
             {
                 textBox1.Text = "0.0";
                 trueZiro = false;
-                right = true;
+                left = true;
             }
         }
          
@@ -97,7 +97,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
                 if(texts[0]=="0") texts[0] = "9";
                 else 
@@ -120,7 +120,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
 
                 if (texts[0] == "0") texts[0] = "1";
@@ -144,7 +144,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
 
                 if (texts[0] == "0") texts[0] = "7";
@@ -168,7 +168,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
 
                 if (texts[0] == "0") texts[0] = "8";
@@ -192,7 +192,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
 
                 if (texts[0] == "0") texts[0] = "4";
@@ -216,7 +216,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
 
                 if (texts[0] == "0") texts[0] = "5";
@@ -240,7 +240,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
 
                 if (texts[0] == "0") texts[0] = "6";
@@ -264,7 +264,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
 
                 if (texts[0] == "0") texts[0] = "2";
@@ -288,7 +288,7 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right)
+            if (left)
             {
 
                 if (texts[0] == "0") texts[0] = "3";
@@ -312,11 +312,11 @@ namespace WinFormsApp9
                 arthimaticClicked = false;
             }
             String[] texts = textBox1.Text.Split(".");
-            if (right && texts[0]!="0")
+            if (left && texts[0]!="0")
             {
                 texts[0] += "0";
             }
-            else
+            else if(!left)
             {
                 if (texts[1] == "0" && trueZiro) texts[1] += "0";
                 else if (texts[1] == "0") trueZiro=true;
@@ -363,7 +363,7 @@ namespace WinFormsApp9
         {
             firstNum = 0.0;
             lastNum = 0.0;
-            right = true;
+            left = true;
             arthimaticClicked = false;
             trueZiro = false;
             textBox1.Text = "0.0";
@@ -387,6 +387,7 @@ namespace WinFormsApp9
                 results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
             results.Push("-");
             arthimaticClicked = true;
+            left = true;
             textBox1.Text = s;
             if (!s.Contains(".")) textBox1.Text += ".0";
 
@@ -406,6 +407,7 @@ namespace WinFormsApp9
                 results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
             results.Push("*");
             arthimaticClicked = true;
+            left = true;
             textBox1.Text = s;
             if (!s.Contains(".")) textBox1.Text += ".0";
         }
@@ -424,6 +426,7 @@ namespace WinFormsApp9
                 results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
             results.Push("/");
             arthimaticClicked = true;
+            left = true;
             textBox1.Text = s;
             if (!s.Contains(".")) textBox1.Text += ".0";
         }
@@ -443,6 +446,7 @@ namespace WinFormsApp9
             textBox1.Text = s;
             if (!s.Contains(".")) textBox1.Text += ".0";
             arthimaticClicked = true;
+            left = true;
         }
         private void button8_Click(object sender, EventArgs e)
         {
@@ -458,6 +462,7 @@ namespace WinFormsApp9
                 results.Push((Double)d.ConvertFromString(textBox1.Text) + "");
             results.Push("+");
             arthimaticClicked = true;
+            left = true;
             textBox1.Text = s;
             if (!s.Contains(".")) textBox1.Text += ".0";
         }
@@ -516,7 +521,7 @@ namespace WinFormsApp9
 
         private void button4_Click(object sender, EventArgs e)
         {
-            right = false;
+            left = false;
         }
         
      
